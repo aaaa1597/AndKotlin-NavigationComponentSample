@@ -1,2 +1,2 @@
-# And-NavigationComponentSample
+# AndKotlin-NavigationComponentSample
 AndroidのNavigation Componentのサンプル
