@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fcv_container, MainFragment.newInstance("",""))
+            .replace(R.id.fcv_container, SubFragment2.newInstance("",""))
             .commit()
     }
 }
