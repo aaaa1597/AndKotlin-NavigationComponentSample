@@ -29,7 +29,7 @@ res\navigation配下にaaanaviが出来る。
 <img src="image-3.png" width=500>
 
 以下この操作での変更点
-```diff_xml: aaanavi.xml
+```diff xml:aaanavi.xml
 + <?xml version="1.0" encoding="utf-8"?>
 + <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 +     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,12 +38,12 @@ res\navigation配下にaaanaviが出来る。
 + </navigation>
 ```
 
-```diff
+```diff kot:build.gradle.kts
 +   implementation(libs.androidx.navigation.fragment.ktx)
 +   implementation(libs.androidx.navigation.ui.ktx)
 ```
 
-```diff_toml
+```diff toml:libs.versions.toml
 + navigationFragmentKtx = "2.9.0"
 + navigationUiKtx = "2.9.0"
 
