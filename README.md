@@ -29,6 +29,10 @@ res\navigation配下にaaanaviが出来る。
 <img src="image-3.png" width=500>
 
 以下この操作での変更点  
+1. res/navigation/aaanavi.xmlファイルを新規作成
+2. build.gradle.ktsのdependenciesにimplを追加
+3. libs.versions.tomlに定義を追加
+
 - aaanavi.xml(新規作成)
 ```diff xml:aaanavi.xml
 + <?xml version="1.0" encoding="utf-8"?>
