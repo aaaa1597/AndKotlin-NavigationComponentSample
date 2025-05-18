@@ -35,7 +35,7 @@ res\navigation配下にaaanaviが出来る。
 1. res/navigation/aaanavi.xmlファイルを新規作成
 2. build.gradle.ktsのdependenciesにimplを追加
 3. libs.versions.tomlに定義を追加  
-※ 1は自分でも作れるけど、2と3は自動でやってくれるのは便利。
+※ 1は自分でも作れるけど、2と3は自動をやってくれるのは便利。
 
 - res/navigation/aaanavi.xmlファイルを新規作成
 ```diff xml:aaanavi.xml
