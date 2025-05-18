@@ -9,6 +9,7 @@ AndroidのNavigation Componentのサンプル
 1. Fragmentを準備
 2. Navigationリソース(Resource Type = Navigation)を生成
 3. Destination：デスティネーション(遷移先)を追加
+4. ActivityにNavigation Componentをくっつける。
 
 ## 1. Fragmentを準備
 まぁ適当に。
@@ -60,7 +61,7 @@ res\navigation配下にaaanaviが出来る。
 
 ## 3. Destination：デスティネーション(遷移先)を追加
 ActivityやらFragmentやらを遷移先に指定できる。  
-※ちなみにこの操作してもまだ何も表示されない  
+※ちなみにこの操作して、build→実行してもまだ何も表示されない  
 
 下図の赤丸アイコンを押下 → 遷移先を追加
 
@@ -172,5 +173,6 @@ ActivityやらFragmentやらを遷移先に指定できる。
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-※この手修正をすると画面が表示される様になった。  
+※ここまでやったら、ビルド→実行で画面が表示される様になった。  
 <img src="Screenshot-1.png" width=150>
+
