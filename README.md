@@ -2,7 +2,7 @@
 AndroidのNavigation Componentのサンプル
 
 ## Navigation Component
-今の今まで Navigation Component を触らずにやってきたけど、いい加減士っとく必要があるかと思って調べてみた。  
+今の今まで Navigation Component を触らずにやってきたけど、いい加減知っとく必要があるかと思って調べてみた。  
 早い話、ActivityとかFragmentとかの画面遷移をGUIで作れるようにしたやつ。実体はxmlファイルだけど、それをAndroid Studioで開くと図として表示してくれる。 状態遷移図が必要になりそうな時に Navigation Component で作っとくときっと幸せになれる。 必要になってからだもう遅い(いろいろ作り直しになると思われ)。
 
 ## ざっくり手順
