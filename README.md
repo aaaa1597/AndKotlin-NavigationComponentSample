@@ -252,9 +252,9 @@ NavControllerの取得方法は他にもあって以下の通り。
    2. View.findNavController()
    3. Activity.findNavController(viewId: Int)
 
-実装
+**実装**
 
-- fragment_main.xml(31-49)  ← 画面遷移用のボタンを追加してなかった。。。
+- 画面遷移用のボタンの追加 fragment_main.xml(31-49)
 
 ```diff xml:fragment_main.xml
   ～略～
