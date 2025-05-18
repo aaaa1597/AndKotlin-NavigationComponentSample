@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +39,20 @@ class MainFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<Button>(R.id.btn_callsub1).setOnClickListener {
+            val params = bundleOf("aaa" to "aaa", "bbb" to "bbb")
+            findNavController().navigate(R.id.action_mainFragment_to_subFragment12, params)
+        }
+
+        view.findViewById<Button>(R.id.btn_callsub2).setOnClickListener {
+            val params = bundleOf("aaa" to "aaa", "bbb" to "bbb")
+            findNavController().navigate(R.id.action_mainFragment_to_subFragment2, params)
+        }
     }
 
     companion object {
