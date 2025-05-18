@@ -10,6 +10,7 @@ AndroidのNavigation Componentのサンプル
 2. Navigationリソース(Resource Type = Navigation)を生成
 3. Destination：デスティネーション(遷移先)を追加
 4. ActivityにNavigation Componentをくっつける。
+5. 他のFragmentもデスティネーション(遷移先)に設定する。
 
 ## 1. Fragmentを準備
 まぁ適当に。
@@ -176,3 +177,60 @@ ActivityやらFragmentやらを遷移先に指定できる。
 ※ここまでやったら、ビルド→実行で画面が表示される様になった。  
 <img src="Screenshot-1.png" width=150>
 
+
+## 5. 他のFragmentもデスティネーション(遷移先)に設定する。
+
+手順3(デスティネーション(遷移先)を追加)の要領で、デスティネーションを追加
+<img src="image-5.png" width=500>
+
+↓  
+マウス操作で、丸のアイコンのやつをつかんで、  
+<img src="image-7.png" width=300>  
+
+↓  
+遷移先の画面にDropする。  
+<img src="image-9.png" width=300>  
+
+↓  
+繋がる。  
+<img src="image-10.png" width=300> 
+
+↓  
+同じ操作を下のFragmentにも実行する。  
+<img src="image-11.png" width=300> 
+
+この操作での変更点  
+1. aaanavi.xmlファイルに actionの定義とFrgmentの定義を追加
+
+- res/navigation/aaanavi.xml(12-29)
+```diff xml:aaanavi.xml
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aaanavi"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.aaa.navigationcomponent.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
++       <action
++           android:id="@+id/action_mainFragment_to_subFragment12"
++           app:destination="@id/subFragment1" />
++       <action
++           android:id="@+id/action_mainFragment_to_subFragment2"
++           app:destination="@id/subFragment2" />
+    </fragment>
++   <fragment
++       android:id="@+id/subFragment1"
++       android:name="com.aaa.navigationcomponent.SubFragment1"
++       android:label="fragment_sub1"
++       tools:layout="@layout/fragment_sub1" />
++   <fragment
++       android:id="@+id/subFragment2"
++       android:name="com.aaa.navigationcomponent.SubFragment2"
++       android:label="fragment_sub2"
++       tools:layout="@layout/fragment_sub2" />
+</navigation>```
