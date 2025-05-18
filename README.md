@@ -307,5 +307,5 @@ NavControllerの取得方法は他にもあって以下の通り。
   ～略～
 ```
 
-実質の変更部分は、findNavController().navigate()の呼出だけ。
+実質の変更部分は、findNavController().navigate()の呼出だけ。  
 これで、画面遷移の実装ができた。
