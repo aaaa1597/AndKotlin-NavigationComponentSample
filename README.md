@@ -8,7 +8,7 @@ AndroidのNavigation Componentのサンプル
 ## ざっくり手順
 1. Fragmentを準備
 2. Navigationリソース(Resource Type = Navigation)を生成
-3. 
+3. Destination：デスティネーション(遷移先)を追加
 
 ## 1. Fragmentを準備
 まぁ適当に。
@@ -33,7 +33,7 @@ res\navigation配下にaaanaviが出来る。
 2. build.gradle.ktsのdependenciesにimplを追加
 3. libs.versions.tomlに定義を追加
 
-- aaanavi.xml(新規作成)
+- res/navigation/aaanavi.xmlファイルを新規作成
 ```diff xml:aaanavi.xml
 + <?xml version="1.0" encoding="utf-8"?>
 + <navigation xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,13 +43,13 @@ res\navigation配下にaaanaviが出来る。
 + </navigation>
 ```
 
-- build.gradle.kts(45-46)
+- build.gradle.kts(45-46)のdependenciesにimplを追加
 ```diff kot:build.gradle.kts
 +   implementation(libs.androidx.navigation.fragment.ktx)
 +   implementation(libs.androidx.navigation.ui.ktx)
 ```
 
-- libs.versions.toml(12-13,24-25)
+- libs.versions.toml(12-13,24-25)に定義を追加
 ```diff toml:libs.versions.toml
 + navigationFragmentKtx = "2.9.0"
 + navigationUiKtx = "2.9.0"
@@ -61,4 +61,28 @@ res\navigation配下にaaanaviが出来る。
 
 ## 3. Destination：デスティネーション(遷移先)を追加
 ActivityやらFragmentやらを遷移先に指定できる。
+下図の赤丸アイコンを押下 → 遷移先を追加
 
+<img src="image-2.png" width=500>
+
+<br/>↓ こうなった<br/>
+
+<img src="image-4.png" width=500>
+
+この操作での変更点  
+1. res/navigation/aaanavi.xmlファイルにfragmentの定義を追加
+
+- res/navigation/aaanavi.xml(4,6,8-12)
+```diff xml:aaanavi.xml
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
++   xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aaanavi"
++   app:startDestination="@id/mainFragment">
+
++   <fragment
++       android:id="@+id/mainFragment"
++       android:name="com.aaa.navigationcomponent.MainFragment"
++       android:label="fragment_main"
++       tools:layout="@layout/fragment_main" />
+```
