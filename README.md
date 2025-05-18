@@ -31,7 +31,7 @@ res\navigation配下にaaanaviが出来る。
 ダブルクリックで開いとく  
 <img src="image-3.png" width=500>
 
-で、この操作をすることの実質変更点は下記。
+で、ここまでの操作をすることの実質変更点は下記。
 1. res/navigation/aaanavi.xmlファイルを新規作成
 2. build.gradle.ktsのdependenciesにimplを追加
 3. libs.versions.tomlに定義を追加
