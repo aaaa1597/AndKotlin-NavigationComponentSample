@@ -11,6 +11,7 @@ AndroidのNavigation Componentのサンプル
 3. Destination：デスティネーション(遷移先)を追加
 4. ActivityにNavigation Componentをくっつける。
 5. 他のFragmentもデスティネーション(遷移先)に設定する。
+6. 画面遷移処理を実装する
 
 ## 1. Fragmentを準備
 まぁ適当に。
@@ -137,7 +138,7 @@ ActivityやらFragmentやらを遷移先に指定できる。
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-うーん、fragmentのコンテナとしてfcv_containerを準備してたのに、勝手に別のFragmentContainerViewを追加されてしまった。既存への追加の方法はわかんない。
+うーん、fragmentのコンテナとしてfcv_containerを準備してたのに、勝手に別のFragmentContainerViewを追加されてしまった。準備してたfcv_containerへの追加の方法はわかんない。
 
 手で修正する。
 
@@ -196,7 +197,7 @@ ActivityやらFragmentやらを遷移先に指定できる。
 <img src="image-10.png" width=300> 
 
 ↓  
-同じ操作を下のFragmentにも実行する。  
+同じ操作を下の SubFragment2 にも実行する。  
 <img src="image-11.png" width=300> 
 
 この操作での変更点  
@@ -233,4 +234,78 @@ ActivityやらFragmentやらを遷移先に指定できる。
 +       android:name="com.aaa.navigationcomponent.SubFragment2"
 +       android:label="fragment_sub2"
 +       tools:layout="@layout/fragment_sub2" />
-</navigation>```
+</navigation>
+```
+
+## 6. 画面遷移処理を実装する
+
+1. Fragment::findNavController()で、NavControllerを取得
+2. NavController.navigateを呼ぶ
+
+<br/>
+NavControllerの取得方法は他にもあって以下の通り。
+
+   1. Fragment.findNavController()
+   2. View.findNavController()
+   3. Activity.findNavController(viewId: Int)
+
+実装
+
+- fragment_main.xml(31-49)  ← 画面遷移用のボタンを追加してなかった。。。
+
+```diff xml:fragment_main.xml
+  ～略～
++   <Button
++       android:id="@+id/btn_callsub1"
++       android:layout_width="wrap_content"
++       android:layout_height="wrap_content"
++       android:text="@string/callSubfragment1"
++       app:layout_constraintTop_toBottomOf="@id/imv_nyandar001"
++       app:layout_constraintLeft_toLeftOf="parent"
++       app:layout_constraintRight_toLeftOf="@id/btn_callsub2"
++       app:layout_constraintHorizontal_chainStyle="packed"/>
+
++   <Button
++       android:id="@+id/btn_callsub2"
++       android:layout_width="wrap_content"
++       android:layout_height="wrap_content"
++       android:text="@string/callSubfragment2"
++       app:layout_constraintTop_toBottomOf="@id/imv_nyandar001"
++       app:layout_constraintLeft_toRightOf="@id/btn_callsub1"
++       app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+- MainFragment.kt(8-11, 42-55)
+
+```diff kotlin:MainFragment.kt
+  ～略～
+
++ import android.view.ViewGroup
++ import android.widget.Button
++ import androidx.core.os.bundleOf
++ import androidx.navigation.fragment.NavHostFragment
++ import androidx.navigation.fragment.findNavController
+
+  ～略～
+
++   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++       super.onViewCreated(view, savedInstanceState)
++
++       view.findViewById<Button>(R.id.btn_callsub1).setOnClickListener {
++           val params = bundleOf("aaa" to "aaa", "bbb" to "bbb")
++           findNavController().navigate(R.id.action_mainFragment_to_subFragment12, params)
++       }
++
++       view.findViewById<Button>(R.id.btn_callsub2).setOnClickListener {
++           val params = bundleOf("aaa" to "aaa", "bbb" to "bbb")
++           findNavController().navigate(R.id.action_mainFragment_to_subFragment2, params)
++       }
++   }
++
+  ～略～
+```
+
+実質の変更部分は、findNavController().navigate()の呼出だけ。
+これで、画面遷移の実装ができた。
