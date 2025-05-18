@@ -2,6 +2,7 @@ package com.aaa.navigationcomponent
 
 import android.graphics.Matrix
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ class SubFragment2 : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            Log.d("aaaaa", "aaaaa aaa=${it.getString("aaa")} bbb=${it.getString("bbb")}")
         }
     }
 
