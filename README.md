@@ -108,7 +108,7 @@ ActivityやらFragmentやらを遷移先に指定できる。
 <img src="image-8.png" width=500>
 
 この操作をしたことの実質変更点は下記。 
-1. activity_main.xmlファイルに FragmentContainerView を追加
+1. activity_main.xmlファイルに FragmentContainerView を追加  
 ※結局、手で直したので、ツールでやる意味あんまないかも。
 
 - activity_main.xml(16-25)
