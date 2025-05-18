@@ -58,9 +58,10 @@ res\navigation配下にaaanaviが出来る。
 + androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 ```
 
-
 ## 3. Destination：デスティネーション(遷移先)を追加
-ActivityやらFragmentやらを遷移先に指定できる。
+ActivityやらFragmentやらを遷移先に指定できる。  
+※ちなみにこの操作してもまだ何も表示されない  
+
 下図の赤丸アイコンを押下 → 遷移先を追加
 
 <img src="image-2.png" width=500>
@@ -86,3 +87,90 @@ ActivityやらFragmentやらを遷移先に指定できる。
 +       android:label="fragment_main"
 +       tools:layout="@layout/fragment_main" />
 ```
+
+## 4. ActivityにNavigation Componentをくっつける。
+
+1. Activityに設定しているlayautファイル(activity_main.xml)を開く
+2. Design画面を開いとく
+3. frag と入力。 NavHostFragmentを検索
+4. NavHostFragment を activity_main.xmlにDrag & Drop
+
+<img src="image-6.png" width=500>
+
+<br/>↓<br/>
+5. 出てきたpopupで手順3で設定したFragment(or Acivity)を選択 → OK
+
+<img src="image-8.png" width=500>
+
+この操作での変更点  
+1. activity_main.xmlファイルに FragmentContainerView を追加
+
+- activity_main.xml(16-25)
+```diff xml:activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcv_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
++   <androidx.fragment.app.FragmentContainerView
++       android:id="@+id/fragmentContainerView"
++       android:name="androidx.navigation.fragment.NavHostFragment"
++       android:layout_width="170dp"
++       android:layout_height="8dp"
++       app:defaultNavHost="true"
++       app:navGraph="@navigation/aaanavi"
++       tools:layout_editor_absoluteX="1dp"
++       tools:layout_editor_absoluteY="182dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+うーん、fragmentのコンテナとしてfcv_containerを準備してたのに、勝手に別のFragmentContainerViewを追加されてしまった。既存への追加の方法はわかんない。
+
+手で修正する。
+
+- activity_main.xml(13,16-17,19-25)
+```diff xml:activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcv_container"
++       android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
++       app:defaultNavHost="true"
++       app:navGraph="@navigation/aaanavi" />
+
+-   <androidx.fragment.app.FragmentContainerView
+-       android:id="@+id/fragmentContainerView"
+-       android:name="androidx.navigation.fragment.NavHostFragment"
+-       android:layout_width="170dp"
+-       android:layout_height="8dp"
+-       app:defaultNavHost="true"
+-       app:navGraph="@navigation/aaanavi"
+-       tools:layout_editor_absoluteX="1dp"
+-       tools:layout_editor_absoluteY="182dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+※この手修正をすると画面が表示される様になった。  
+<img src="Screenshot-1.png" width=150>
