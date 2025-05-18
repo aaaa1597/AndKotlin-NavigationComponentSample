@@ -74,8 +74,9 @@ ActivityやらFragmentやらを遷移先に指定できる。
 
 <img src="image-4.png" width=500>
 
-この操作での変更点  
+で、この操作をしたことの実質変更点は下記。 
 1. res/navigation/aaanavi.xmlファイルにfragmentの定義を追加
+※この手順は自分でも出来る。  
 
 - res/navigation/aaanavi.xml(4,6,8-12)
 ```diff xml:aaanavi.xml
@@ -106,8 +107,9 @@ ActivityやらFragmentやらを遷移先に指定できる。
 
 <img src="image-8.png" width=500>
 
-この操作での変更点  
+この操作をしたことの実質変更点は下記。 
 1. activity_main.xmlファイルに FragmentContainerView を追加
+※結局、手で直したので、ツールでやる意味あんまないかも。
 
 - activity_main.xml(16-25)
 ```diff xml:activity_main.xml
